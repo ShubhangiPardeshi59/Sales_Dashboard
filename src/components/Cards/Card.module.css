@@ -1,0 +1,15 @@
+.cardImg img {
+  width: 4rem;
+  height: 4rem;
+  margin: 0.3rem;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-right: 0.3rem;
+}

@@ -1,0 +1,16 @@
+.categorySales{
+    font-size: 1rem;
+   overflow: auto;
+}
+.chartTitle{
+    font-size: 1rem;
+    background-color: rgb(210, 248, 210);
+    padding:0.2rem;
+    text-align: center;
+}
+.salesTrend{
+    font-size: 1rem;
+}
+.countrySales{
+    font-size: 1rem;
+}

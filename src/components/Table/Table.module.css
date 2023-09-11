@@ -1,0 +1,98 @@
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  height: 83%;
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 1rem;
+}
+
+.searchContainer {
+  float: left;
+}
+
+.searchContainer input[type="text"] {
+  padding: 6px;
+  font-size: 1.2rem;
+  border: 1px solid gray;
+  width: 30rem;
+}
+
+.searchContainer button {
+  padding: 7px 10px;
+  background: #ddd;
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.searchContainer button:hover {
+  background: #ccc;
+}
+
+.pagination {
+  display: inline-block;
+  background-color: white;
+  font-size: 1.2rem;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #8ddfa8;
+  font-weight: bold;
+  border-radius: 5px;
+  border-color: black;
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.tableBody table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.tableBody table {
+  border-collapse: collapse;
+  width: 70rem;
+  height: 60%;
+  overflow: scroll;
+  table-layout: fixed;
+}
+
+.tableBody th,
+td {
+  padding: 6px;
+}
+
+.tableBody table thead {
+  background-color: #bec1bf;
+  color: #333;
+}
+
+.tableBody table tbody tr {
+  background-color: white;
+}
+
+.tableBody table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 3rem;
+}
+
+.para {
+  text-align: center;
+}
