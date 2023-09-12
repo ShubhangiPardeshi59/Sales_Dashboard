@@ -14,7 +14,7 @@ export function TotalTransactions() {
   return (
     <Card
       title="Total Transctions"
-      value={totalCustomers}
+      value={data.length != 0 ? totalCustomers : ""}
       image={transactionImg}
     />
   );
@@ -35,13 +35,15 @@ export function TotalSales() {
     return sum;
   }, [data]);
 
-  return (
-    <Card
-      title="Total Revenue"
-      value={`$${calTotalRevenue}M`}
-      image={salesImg}
-    />
-  );
+    return (
+      <Card
+        title="Total Revenue"
+        value={data.length != 0 ? `$${calTotalRevenue}M` : ""}
+        image={salesImg}
+      />
+    );
+  
+  
 }
 
 export function Profit() {
@@ -62,5 +64,7 @@ export function Profit() {
     return percentageProfit;
   }, [data]);
 
-  return <Card title="Profit" value={`${calProfit}%`} image={profitImg} />;
+    return <Card title="Profit" value={data.length != 0 ? `${calProfit}%` : ""} image={profitImg} />;
+  
+
 }

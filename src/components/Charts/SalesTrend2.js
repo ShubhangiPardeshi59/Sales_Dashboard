@@ -34,12 +34,24 @@ export default function SalesTrend() {
   result.sort(sortByDateMonth);
 
   useEffectLineChart(result, "revenue", "dateMonth", "sales-trend");
-  return (
-    <>
+ 
+  if(result.length !== 0){
+    return (
+      <>
+        <div className={classes.chartTitle}>Yearly and monthy revenue</div>
+        <div id="sales-trend" className = {classes.salesTrend} ></div>
+      </>
+    );
+  }
+  else{
+   
+    return(
+      <>
       <div className={classes.chartTitle}>Yearly and monthy revenue</div>
-      <div id="sales-trend" className = {classes.salesTrend} style={{ height: "400px", width: "90%" }}></div>
+      <div className = {classes.message} >No data found</div>
     </>
-  );
+    )
+  }
 }
 
 // useEffect(() => {

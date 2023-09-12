@@ -33,6 +33,7 @@ export default function Table() {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
+          itemsPerPage = {itemsPerPage}
         />
       </div>
     </div>

@@ -17,12 +17,26 @@ export default function PieChart() {
   }));
 
   useEffectPieChart(result, "revenue", "category", "category-sales");
-  return (
-    <>
+  
+
+  if(result.length !== 0){
+    return (
+      <>
+        <div className={classes.chartTitle}></div>
+        <div id="category-sales" className={classes.categorySales}></div>
+      </>
+    );
+   
+  }
+  else{
+   
+    return(
+      <>
       <div className={classes.chartTitle}>Average Revenue By Category</div>
-      <div id="category-sales" className={classes.categorySales} style={{ height: "150px", width: "100%" }}></div>
+      <div className = {classes.message} >No data found</div>
     </>
-  );
+    )
+  }
 }
 
 // useEffect(()=>{

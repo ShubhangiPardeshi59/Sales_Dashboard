@@ -17,12 +17,24 @@ export default function FunnelChart() {
   }));
   console.log("filtered dat in funnel chart ", data);
   useEffectFunnelChart(result, "revenue", "country", "country-sales");
-  return (
-    <>
+  if(result.length !== 0){
+    return(
+      <>
       <div className={classes.chartTitle}>Revenue by country</div>
-      <div id="country-sales" className = {classes.countrySales} style={{ height: "150px", width: "100%" }}></div>
+      <div id="country-sales" className = {classes.countrySales} ></div>
     </>
-  );
+    )
+   
+  }
+  else{
+   
+    return(
+      <>
+      <div className={classes.chartTitle}>Revenue by country</div>
+      <div className = {classes.message} >No data found</div>
+    </>
+    )
+  }
 }
 
 // Create legend

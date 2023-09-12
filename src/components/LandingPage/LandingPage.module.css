@@ -1,7 +1,7 @@
 .landingPageContainer {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 16.7rem 16.7rem 16.7rem 16.7rem;
+  grid-template-columns: 16.6rem 16.6rem 16.5rem 16.5rem;
   grid-template-rows: 5rem 13rem 12rem;
   background-color: #f2f2f2;
   height: 87%;

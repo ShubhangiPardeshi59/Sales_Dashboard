@@ -5,6 +5,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
+import classes from "./style.module.css"
 
 const transformData = (somedata) => {
   const temp_data = somedata.map((obj) => ({
@@ -47,6 +48,9 @@ const setId = (somedata) => {
       case "Germany":
         id = "DE";
         break;
+      default:
+        id="";
+        break;
     }
     return { id: id, country: obj["country"], revenue: obj["revenue"] };
   });
@@ -54,7 +58,9 @@ const setId = (somedata) => {
 };
 
 export default function MapChart() {
-  const data = useSelector((state) => state.data);
+  const data = useSelector(
+    (state) => state.apiDataReducer.data
+  );
   const mapData = transformData(data);
 
   useEffect(() => {
@@ -68,7 +74,7 @@ export default function MapChart() {
       am5map.MapChart.new(root, {
         panX: "rotateX",
         panY: "rotateY",
-        projection: am5map.geoMercator(),
+        projection: am5map.geoEqualEarth(),
       })
     );
 
@@ -83,7 +89,7 @@ export default function MapChart() {
     });
     // Add background polygo
     backgroundSeries.data.push({
-      geometry: am5map.getGeoRectangle(90, 180, -90, -180),
+      geometry: am5map.getGeoRectangle(90, 180, -70, -180),
     });
 
     // Create main polygon series for countries
@@ -186,6 +192,25 @@ export default function MapChart() {
       }
     });
 
+    // let label = cont.children.push(am5.Label.new(root, {
+    //   text: subData.revenue + "%",
+    //   fill: am5.color(0xffffff),
+    //   fontWeight: "400",
+    //   centerX: am5.p50,
+    //   centerY: am5.p50,
+      
+    // }))
+  
+    // let titleLabel = container.children.push(am5.Label.new(root, {
+    //   text: dataItem.dataContext.title,
+    //   fill: color,
+    //   fontWeight: "500",
+    //   fontSize: "1em",
+    //   centerY: am5.p50,
+    //   dy: -radius * 2,
+    //   dx: radius
+    // }))
+
     cont.children.push(
       am5.Label.new(root, {
         centerY: am5.p50,
@@ -196,9 +221,15 @@ export default function MapChart() {
     // Make stuff animate on load
     chart.appear(1000, 100);
     return () => root.dispose();
-  }, []);
+  }, [mapData]);
 
-  return <div id="chartdiv" style={{ height: "350px", width: "90%" }}></div>;
+
+  return (
+    <div className={classes.mapChart}>
+      <div className={classes.chartTitle}>Revenue by country</div>
+      <div id="chartdiv" className = {classes.chartdiv}></div>
+    </div>
+  );
 }
 
 /*

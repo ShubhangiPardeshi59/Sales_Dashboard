@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: #f2f2f2;
-  height: 83%;
+  height: 87%;
   padding: 1rem;
   border-radius: 10px;
   gap: 1rem;
@@ -66,7 +66,7 @@ th {
 
 .tableBody table {
   border-collapse: collapse;
-  width: 70rem;
+  width: 69rem;
   height: 60%;
   overflow: scroll;
   table-layout: fixed;
@@ -74,7 +74,7 @@ th {
 
 .tableBody th,
 td {
-  padding: 6px;
+  padding: 5px;
 }
 
 .tableBody table thead {
@@ -90,7 +90,7 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 3rem;
+  height: 3.2rem;
 }
 
 .para {

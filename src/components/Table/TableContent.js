@@ -84,13 +84,13 @@ export default function TableContent(props) {
   };
 
   const GetRows = () => {
-    let i = 1;
+    
     const rows = data
       .slice(props.startIndex, props.endIndex)
       .map((obj, index) => {
         return (
           <tr key={index}>
-            <td>{i++}</td>
+            <td>{obj["index"] + 1}</td>
             <td>{obj["date"]}</td>
             <td>{obj["year"]}</td>
             <td>{obj["month"]}</td>

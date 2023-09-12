@@ -4,6 +4,7 @@ import Header from "./UI/Header";
 import Sidebar from "./UI/sidebar/Sidebar";
 import Table from "./components/Table/Table.js";
 import Loading from "./components/Loading/Loading";
+import Sales from "./components/sales/Sales"
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -50,6 +51,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<LandingPage />}></Route>
                 <Route path="/table" element={<Table />}></Route>
+                <Route path="/sales" element={<Sales />}></Route>
               </Routes>
             </div>
           </div>
