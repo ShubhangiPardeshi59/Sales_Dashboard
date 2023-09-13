@@ -15,7 +15,7 @@ export default function SalesTrend() {
       }
     )
   })
-  console.log("temp data in sales chart",tempdata)
+  
   useEffect(() => {
    /* Chart code */
 // Create root element

@@ -10,13 +10,13 @@ export default function SearchBar() {
   const getData = () => {
     searchedText.current.style.backgroundColor = "#8DDFA8";
     let userInput = searchedText.current.value;
-    console.log("searched input is ", searchedText.current.value);
+    
     let matchingObjects = data.filter((obj) => {
       // Combine all values of the object into a single string for searching
       const combinedValues = Object.values(obj).join(" ").toLowerCase();
       return combinedValues.includes(userInput.toLowerCase());
     });
-    console.log("matching obj", matchingObjects);
+
     dispatch({ type: "filter_data", value: matchingObjects });
   };
 

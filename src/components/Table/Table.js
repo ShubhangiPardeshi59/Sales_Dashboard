@@ -8,7 +8,6 @@ import Pagination from "./Pagination";
 export default function Table() {
   const data = useSelector((state) => state.apiDataReducer.filteredData);
   // const data = useSelector((state) => state.apiDataReducer.data);
-  console.log("in table filtered data ", data);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
   const startIndex = (currentPage - 1) * itemsPerPage;

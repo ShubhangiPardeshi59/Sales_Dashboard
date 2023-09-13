@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import transactionImg from "../../assets/transaction.png";
 import salesImg from "../../assets/salesImg.png";
 import profitImg from "../../assets/profit.png";
@@ -10,10 +10,9 @@ export function TotalTransactions() {
     (state) => state.apiDataReducer.filterDataLandingPage
   );
   const totalCustomers = data.length;
-
   return (
     <Card
-      title="Total Transctions"
+      title="Total Transactions"
       value={data.length != 0 ? totalCustomers : ""}
       image={transactionImg}
     />
@@ -26,19 +25,19 @@ export function TotalSales() {
   );
 
   //used this so that whenever data changes this should get called
-  const calTotalRevenue = useMemo(() => {
+  const calTotalRevenue = () => {
     let sum = 0;
     data.forEach((obj) => {
       sum += obj["revenue"];
     });
     sum = (sum / 1000000).toFixed(2);
     return sum;
-  }, [data]);
+  };
 
     return (
       <Card
         title="Total Revenue"
-        value={data.length != 0 ? `$${calTotalRevenue}M` : ""}
+        value={data.length != 0 ? `$${calTotalRevenue()}M` : ""}
         image={salesImg}
       />
     );
@@ -51,7 +50,7 @@ export function Profit() {
     (state) => state.apiDataReducer.filterDataLandingPage
   );
   //used this so that whenever data changes this should get called
-  const calProfit = useMemo(() => {
+  const calProfit = () => {
     let sumCost = 0;
     let sumRevenue = 0;
     data.forEach((obj) => {
@@ -62,9 +61,9 @@ export function Profit() {
 
     let percentageProfit = ((profit / sumCost) * 100).toFixed(2);
     return percentageProfit;
-  }, [data]);
+  };
 
-    return <Card title="Profit" value={data.length != 0 ? `${calProfit}%` : ""} image={profitImg} />;
+    return <Card title="Profit" value={data.length != 0 ? `${calProfit()}%` : ""} image={profitImg} />;
   
 
 }

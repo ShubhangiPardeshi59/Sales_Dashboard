@@ -15,7 +15,6 @@ export default function FunnelChart() {
     country: country,
     revenue: calculateAverageValue(grouped_data[country]),
   }));
-  console.log("filtered dat in funnel chart ", data);
   useEffectFunnelChart(result, "revenue", "country", "country-sales");
   if(result.length !== 0){
     return(

@@ -16,8 +16,7 @@ export default function SalesTrend() {
   // Requiring the lodash library
   const _ = require("lodash");
   const grouped_data = _.groupBy(tempdata, "dateMonth");
-  console.log("grouped data in sales chart", grouped_data);
-
+ 
   //get requried data
   const result = Object.keys(grouped_data).map((dateMonth) => ({
     dateMonth: dateMonth,

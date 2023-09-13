@@ -5,6 +5,7 @@ import Sidebar from "./UI/sidebar/Sidebar";
 import Table from "./components/Table/Table.js";
 import Loading from "./components/Loading/Loading";
 import Sales from "./components/sales/Sales"
+import Inventory from "./components/inventory/Inventory"
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -33,7 +34,7 @@ function App() {
   useEffect(() => {
     fetchDataHandler();
   }, [fetchDataHandler]);
-  console.log(data);
+
   return (
     //<div>hello</div>
     <>
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/" element={<LandingPage />}></Route>
                 <Route path="/table" element={<Table />}></Route>
                 <Route path="/sales" element={<Sales />}></Route>
+                <Route path="/inventory" element={<Inventory />}></Route>
               </Routes>
             </div>
           </div>

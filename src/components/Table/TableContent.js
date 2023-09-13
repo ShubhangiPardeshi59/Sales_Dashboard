@@ -19,7 +19,6 @@ export default function TableContent(props) {
   // const dispatch = useDispatch();
   const data = useSelector((state) => state.apiDataReducer.filteredData);
   // const sorting = useSelector((state)=>state.apiSorting);
-  //console.log("sorting is ",sorting)
   const [sorted, setSorted] = useState({
     sorted: "revenue",
     reversed: false,
@@ -70,7 +69,7 @@ export default function TableContent(props) {
     return <FaArrowDown />;
   };
 
-  console.log("in table content filter data is ", data);
+
   const GetColumns = () => {
     const tempCol = data_columns.map(function (val, index) {
       return (

@@ -78,7 +78,7 @@ export const useEffectFunnelChart = (
       series.appear();
 
       chart.appear(1000, 100);
-      console.log("inside use effect", somedata);
+    
       return () => root.dispose();
     }
   }, [somedata]);

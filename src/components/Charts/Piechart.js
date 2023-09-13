@@ -9,7 +9,7 @@ export default function PieChart() {
   // Requiring the lodash library
   const _ = require("lodash");
   const grouped_data = _.groupBy(data, "product_category");
-  //console.log("grouped data" ,grouped_data)
+  
 
   const result = Object.keys(grouped_data).map((category) => ({
     category: category,
@@ -22,7 +22,7 @@ export default function PieChart() {
   if(result.length !== 0){
     return (
       <>
-        <div className={classes.chartTitle}></div>
+        <div className={classes.chartTitle}>Average Revenue By Category</div>
         <div id="category-sales" className={classes.categorySales}></div>
       </>
     );

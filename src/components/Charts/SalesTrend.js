@@ -15,7 +15,7 @@ export default function SalesTrend() {
       }
     )
   })
-  console.log("temp data in sales chart",tempdata)
+
   useEffect(() => {
     let root = am5.Root.new("salesTrend");
     // Set themes

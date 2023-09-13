@@ -21,10 +21,9 @@
     width: 100%;
 }
 .mapChart{
-    height: 400px;
-    width: 90% ;
+    height: 500px;
+    width: 100% ;
     background-color: white;
-    margin:3rem 4rem;
 }
 .chartdiv {
     height: 350px;
@@ -36,4 +35,10 @@
     height: 10rem;
     align-items: center;
     justify-content: center;
+}
+
+.directedTree{
+    height: 500px;
+    width: 100% ;
+    background-color: white;
 }

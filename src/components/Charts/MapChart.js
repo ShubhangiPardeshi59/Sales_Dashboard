@@ -144,7 +144,7 @@ export default function MapChart() {
 
     let colors = am5.ColorSet.new(root, {});
     const newData = setId(mapData);
-    //console.log(newData);
+    
     const subData = newData.map((obj) => {
       return {
         id: obj["id"],

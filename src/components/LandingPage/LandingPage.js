@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Import useState
+import React, { useEffect, useState } from "react"; // Import useState
 import MapChart from "../Charts/MapChart";
 import { TotalTransactions, TotalSales, Profit } from "../Cards/CardKpi";
 import classes from "./LandingPage.module.css";
@@ -17,31 +17,29 @@ export default function LandingPage() {
   const handleYearChange = (event) => {
     const year = event.target.value;
     setSelectedYear(year);
-    filterData(selectedMonth, year);
+   // filterData(selectedMonth, selectedYear);
   };
 
   const handleMonthChange = (event) => {
     const month = event.target.value;
     setSelectedMonth(month);
-    filterData(month, selectedYear);
+   // filterData(selectedMonth, selectedYear);
   };
 
-  const filterData = (month, year) => {
-    if (selectedMonth === "all" && selectedYear === "all") {
-      dispatch({ type: "reset_filter" });
-    } else {
-      const filteredData = data.filter((item) => {
-        return (
-          (year === "all" || item["year"] === parseInt(year)) &&
-          (month === "all" || item["month"] === month)
-        );
-      });
-      dispatch({ type: "filter_data_landing_page", value: filteredData });
+  useEffect(()=>{
+    if (selectedMonth == "all" && selectedYear == "all") {
+      dispatch({ type: "filter_data_landing_page", value: data });
+     
     }
-  };
+    else{
+        const filteredData = data.filter((item) => {
+          return (selectedYear == "all" && item["month"] == selectedMonth) || (item["year"] == parseInt(selectedYear) && selectedMonth == "all") || (item["year"] == parseInt(selectedYear) && item["month"] == selectedMonth)
+        });
+        dispatch({ type: "filter_data_landing_page", value: filteredData });
+    }
+  },[selectedMonth,selectedYear])
 
-  console.log("filtered data dropdown ", data);
-  
+
   return (
 
     <div className={classes.landingPageContainer}>
