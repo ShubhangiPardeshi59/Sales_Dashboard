@@ -9,11 +9,11 @@ export function TotalTransactions() {
   const data = useSelector(
     (state) => state.apiDataReducer.filterDataLandingPage
   );
-  const totalCustomers = data.length;
+  const TotalTransactions = data.length;
   return (
     <Card
       title="Total Transactions"
-      value={data.length != 0 ? totalCustomers : ""}
+      value={data.length != 0 ? TotalTransactions : ""}
       image={transactionImg}
     />
   );

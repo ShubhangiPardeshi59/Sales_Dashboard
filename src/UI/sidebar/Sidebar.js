@@ -1,7 +1,7 @@
 //import classes from "./Sidebar.module.css";
 import "./Sidebar.css";
 import { NavLink } from "react-router-dom";
-import { BsHouseDoorFill, BsTable, BsList,BsCurrencyDollar,BsCart4} from "react-icons/bs";
+import { BsHouseDoorFill, BsTable, BsList,BsCurrencyDollar,BsCart4, BsClipboard2PlusFill} from "react-icons/bs";
 const Sidebar = () => {
   const menuItem = [
     {
@@ -23,6 +23,11 @@ const Sidebar = () => {
       path: "/table",
       name: "Table",
       icon: <BsTable />,
+    },
+    {
+      path: "/form",
+      name: "Form",
+      icon: <BsClipboard2PlusFill />,
     },
   ];
 

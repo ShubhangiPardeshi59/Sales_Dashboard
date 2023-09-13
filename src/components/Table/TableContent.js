@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import classes from "./Table.module.css";

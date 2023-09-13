@@ -23,14 +23,14 @@ export default function Pagination(props) {
   const RenderPageNumbers = () => {
     const pageNumbers = [];
     for (let i = 0; i < Math.min(itemsPerPage, totalPages); i++) {
-      const pageNumber = Number(startPage + i);
+      const pageNumber = startPage + 1;
       if (pageNumber <= totalPages) {
         pageNumbers.push(
           <a
             key={pageNumber}
             href="#"
             data-value={pageNumber}
-            className={currentPage == pageNumber ? classes.active : ""}
+            className={Number(currentPage) === pageNumber ? classes.active : ""}
             onClick={handlePageChange}
           >
             {pageNumber}
@@ -45,7 +45,7 @@ export default function Pagination(props) {
     <a
       href="#"
       className={classes.prev}
-      data-value={Number(currentPage) - 1}
+      data-value={currentPage - 1}
       onClick={handlePageChange}
       disabled={currentPage === 1}
     >
@@ -57,7 +57,7 @@ export default function Pagination(props) {
     <a
       href="#"
       data-name="next"
-      data-value={Number(currentPage) + 1}
+      data-value={currentPage + 1}
       onClick={handlePageChange}
       disabled={currentPage === totalPages}
     >
