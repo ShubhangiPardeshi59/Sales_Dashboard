@@ -1,12 +1,13 @@
 .landingPageContainer {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 16.6rem 16.6rem 16.5rem 16.5rem;
-  grid-template-rows: 5rem 13rem 12rem;
+  grid-template-columns: 15.1rem 15.1rem 15.1rem 15.1rem;
+  grid-template-rows: 5rem 11.4rem 11.4rem;
   background-color: #f2f2f2;
-  height: 87%;
+  height: 86%;
   padding: 1rem;
   font-size: 1.2rem;
+  
 }
 
 .box {
@@ -59,11 +60,16 @@
 }
 
 .dropdown select {
-  width: 11rem;
+  /* width: 11rem;
   height: 2rem;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1rem; */
+  
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 10rem;
 }
 .dropdownTitle {
   width: 3rem;

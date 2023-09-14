@@ -5,12 +5,10 @@ import classes from "./Table.module.css";
 const data_columns = [
   "Index",
   "Date",
-  "Year",
-  "Month",
   "Country",
   "State",
-  "Product Category",
-  "Sub Category",
+  "Category",
+  "SubCategory",
   "quantity",
   "Cost",
   "Revenue",
@@ -91,8 +89,6 @@ export default function TableContent(props) {
           <tr key={index}>
             <td>{obj["index"] + 1}</td>
             <td>{obj["date"]}</td>
-            <td>{obj["year"]}</td>
-            <td>{obj["month"]}</td>
             <td>{obj["country"]}</td>
             <td>{obj["state"]}</td>
             <td>{obj["product_category"]}</td>

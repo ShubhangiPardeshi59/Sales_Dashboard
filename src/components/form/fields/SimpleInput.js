@@ -1,15 +1,28 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useCallback } from "react";
 import useInput from "../hooks/use-input2";
 import classes from "../../form/Form.module.css";
 
-import { validateAge, validateAmount,validateQuantity } from "../validation/validations";
-const get_data = async() =>{
-  const response = await fetch("http://localhost:8000/sales");
-    const somedata = await response.json();
-  return somedata
+import { validateAge, validateAmount} from "../validation/validations";
+
+const monthArray = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+const calculateMonth = (date) =>{
+ let val = date.toString().slice(5,7);
+ return monthArray[parseInt(val) - 1];
 }
+
+const calculateYear = (date) =>{
+  let val = date.toString().slice(0,4);
+  return parseInt(val);
+ }
+
+
 const SimpleInput = () => {
   const dispatch = useDispatch();
+  const dataLength = useSelector(
+    (state) => state.apiDataReducer.length
+  );
   const {
     value: enteredAge,
     isValid: enteredAgeIsValid,
@@ -124,23 +137,25 @@ const SimpleInput = () => {
     // if (!enteredAgeIsValid || !enteredDateIsValid || !selectedCategoryIsValid) {
     //   return;
     // }
+
+   console.log("data length is ",dataLength)
     const data = {
-      "id":3,
-      "index":12345,
+      "id":dataLength + 1,
+      "index":dataLength + 1,
       "date":enteredDate,
-      "year":2016,
-      "month":"July",
+      "year":calculateYear(enteredDate),
+      "month":calculateMonth(enteredDate),
       "customer_age": enteredAge,
       "customer_gender":gender,
       "country":selectedCountry,
       "state":selectedState,
       "product_category":selectedCategory,
       "sub_category":selectedSubCategory,
-      "quantity":quantity,
-      "unit_cost":enteredCost,
-      "unit_price":priceInput,
-      "const":80,
-      "revenue":109
+      "quantity":parseInt(quantity),
+      "unit_cost":parseInt(enteredCost),
+      "unit_price":parseInt(priceInput),
+      "cost": parseInt(quantity) * parseInt(enteredCost),
+      "revenue":parseInt(quantity) * parseInt(priceInput),
       
     }
     fetch("http://localhost:8000/sales",{
@@ -163,69 +178,72 @@ const SimpleInput = () => {
     costReset();
     genderReset();
 
-    const fetched_data = get_data();
-    dispatch({ type: "get_data", value: fetched_data });
+    //fetch data again
+    fetchDataHandler();
+    //const fetched_data = get_data();
+    //dispatch({ type: "get_data", value: fetched_data });
   };
 
+
+  const fetchDataHandler = useCallback(async () => {
+    const response = await fetch("http://localhost:8000/sales");
+    const data = await response.json();
+    dispatch({ type: "get_data", value: data });
+  }, [dispatch]);
+
   const ageInputClasses = ageInputHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+    ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+    : `${classes.formControl} ${classes.col4}`;
 
   const dateInputClasses = dateInputHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+    : `${classes.formControl} ${classes.col4}`;
+
 
   const categoryClasses = categoryHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+  : `${classes.formControl} ${classes.col4}`;
+
 
   const subCategoryClasses = subCategoryHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+  : `${classes.formControl} ${classes.col4}`;
+
 
   const countryClasses = countryHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+  : `${classes.formControl} ${classes.col4}`;
+
 
   const stateClasses = stateHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+  : `${classes.formControl} ${classes.col4}`;
+
 
   const priceClasses = priceInputHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+  : `${classes.formControl} ${classes.col4}`;
+
 
   const costClasses = costHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+  ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+  : `${classes.formControl} ${classes.col4}`;
+
 
     const genderClasses = genderHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+    ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+    : `${classes.formControl} ${classes.col4}`;
+
 
     
     const quantityClasses = quantityHasError
-    ? `${classes.formControl} ${classes.invalid}`
-    : classes.formControl;
+    ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
+    : `${classes.formControl} ${classes.col4}`;
 
   return (
     <form onSubmit={formSubmissionHandler}>
-      <div className={ageInputClasses}>
-        <label htmlFor="age">Age</label>
-        <input
-          type="text"
-          id="age"
-          onChange={ageChangedHandler}
-          onBlur={ageBlurHandler}
-          value={enteredAge}
-        />
-        {ageInputHasError && (
-          <p className={classes.errorText}>
-            Age must not be empty and Age should be between 0 to 120
-          </p>
-        )}
-      </div>
 
+      <div className={classes.row}>
       <div className={dateInputClasses}>
         <label htmlFor="date">Date</label>
         <input
@@ -276,6 +294,10 @@ const SimpleInput = () => {
         )}
       </div>
 
+      </div>
+      
+
+      <div className={classes.row}>
       <div className={countryClasses}>
         <label htmlFor="country">Country</label>
         <select
@@ -328,6 +350,10 @@ const SimpleInput = () => {
         )}
       </div>
 
+      </div>
+
+      <div className={classes.row}>
+      
       <div className={priceClasses}>
         <label htmlFor="price">Price</label>
         <input
@@ -356,28 +382,51 @@ const SimpleInput = () => {
         )}
       </div>
 
-      <div className={genderClasses}>
-        <input type="radio" id="male" name="gender" value="male" onChange={genderChangedHandler} onBlur={genderBlurHandler}/>
+      <div className={ageInputClasses}>
+        <label htmlFor="age">Age</label>
+        <input
+          type="text"
+          id="age"
+          onChange={ageChangedHandler}
+          onBlur={ageBlurHandler}
+          value={enteredAge}
+        />
+        {ageInputHasError && (
+          <p className={classes.errorText}>
+            Age must not be empty and Age should be between 0 to 120
+          </p>
+        )}
+      </div>
+      </div>
+      {/* <div className={genderClasses}>
+        <input type="radio" id="male" checked ={gender === "male" }
+        name="gender" value="male" onChange={genderChangedHandler} onBlur={genderBlurHandler}/>
         <label htmlFor="male">Male</label>
         
-        <input type="radio" id="female" name="gender" value="female" onChange={genderChangedHandler} onBlur={genderBlurHandler} />
+        <input type="radio" id="female" checked ={gender === "female" }
+        name="gender" value="female" onChange={genderChangedHandler} onBlur={genderBlurHandler} />
         <label htmlFor="female">Female</label>
         {genderHasError && (
           <p className={classes.errorText}>Gender must be selected.</p>
         )}
+      </div> */}
+
+      <div className={genderClasses}>
+        <label htmlFor="gender">Gender</label>
+        <select
+          id="state"
+          onChange={genderChangedHandler}
+          onBlur={genderBlurHandler}
+          value = {gender}
+        >
+          <option value="" disabled></option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        {stateHasError && (
+          <p className={classes.errorText}>Country must not be empty</p>
+        )}
       </div>
-
-      {console.log(`age : ${enteredAge}`)}
-      {console.log(`date : ${enteredDate}`)}
-      {console.log(`selectedCategory : ${selectedCategory}`)}
-      {console.log(`selectedsubCategory : ${selectedSubCategory}`)}
-      {console.log(`country : ${selectedCountry}`)}
-      {console.log(`state : ${selectedState}`)}
-      {console.log(`quantity : ${quantity}`)}
-      {console.log(`price : ${priceInput}`)}
-      {console.log(`cost : ${enteredCost}`)}
-      {console.log(`gender : ${gender}`)}
-
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
       </div>

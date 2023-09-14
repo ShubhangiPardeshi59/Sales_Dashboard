@@ -34,10 +34,10 @@ export default function SearchBar() {
         placeholder="Search.."
         name="search"
       />
-      <button type="button" onClick={getData} title="Click to search">
+      <button type="button" onClick={getData} title="Click to search" className={classes.button1}>
         <i className={`fa fa-search ${classes.faSearchIcon}`}></i>
       </button>
-      <button type="button" onClick={reset} title="Click to clear">
+      <button type="button" onClick={reset} title="Click to clear" className={classes.button2}>
         <i className={`fa fa-remove ${classes.faRemoveIcon}`}></i>
       </button>
     </>

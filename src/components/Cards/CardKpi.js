@@ -12,7 +12,7 @@ export function TotalTransactions() {
   const TotalTransactions = data.length;
   return (
     <Card
-      title="Total Transactions"
+      title="Transactions"
       value={data.length != 0 ? TotalTransactions : ""}
       image={transactionImg}
     />

@@ -3,6 +3,7 @@ import { createStore } from "redux";
 import { combineReducers } from "redux";
 const initialState = {
   data: [],
+  length:0,
   filteredData: [],
   filterDataLandingPage: [],
 };
@@ -18,6 +19,7 @@ const apiDataReducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.value,
+        length: action.value.length,
         filteredData: action.value,
         filterDataLandingPage: action.value,
       };

@@ -26,8 +26,8 @@ function App() {
   const fetchDataHandler = useCallback(async () => {
     setIsLoading(true);
     const response = await fetch("http://localhost:8000/sales");
+    
     const data = await response.json();
-
     dispatch({ type: "get_data", value: data });
     setIsLoading(false);
   }, [dispatch]);
