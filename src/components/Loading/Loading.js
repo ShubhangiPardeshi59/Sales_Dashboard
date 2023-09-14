@@ -6,7 +6,7 @@ export default function Loading(props) {
       <div>
         <img src={loadingimg} alt="loading"></img>
       </div>
-      <div>Loading...</div>
+      <div>Welcome</div>
     </div>
   );
 }

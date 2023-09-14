@@ -1,5 +1,5 @@
 import { useSelector,useDispatch } from "react-redux";
-import { useCallback } from "react";
+import { useCallback,useEffect } from "react";
 import useInput from "../hooks/use-input2";
 import classes from "../../form/Form.module.css";
 
@@ -18,7 +18,8 @@ const calculateYear = (date) =>{
  }
 
 
-const SimpleInput = () => {
+const SimpleInput = (props) => {
+  
   const dispatch = useDispatch();
   const dataLength = useSelector(
     (state) => state.apiDataReducer.length
@@ -182,6 +183,7 @@ const SimpleInput = () => {
     fetchDataHandler();
     //const fetched_data = get_data();
     //dispatch({ type: "get_data", value: fetched_data });
+   props.setIsSubmitted(true);
   };
 
 
@@ -240,9 +242,9 @@ const SimpleInput = () => {
     ? `${classes.formControl} ${classes.col4} ${classes.invalid}`
     : `${classes.formControl} ${classes.col4}`;
 
+
   return (
     <form onSubmit={formSubmissionHandler}>
-
       <div className={classes.row}>
       <div className={dateInputClasses}>
         <label htmlFor="date">Date</label>
