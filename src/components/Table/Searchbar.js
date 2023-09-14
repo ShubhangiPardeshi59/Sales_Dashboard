@@ -1,14 +1,17 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Table.module.css";
+
 export default function SearchBar() {
   const data = useSelector((state) => state.apiDataReducer.data);
   const dispatch = useDispatch();
-  const searchedText = useRef("hi");
+
+  const searchedText = useRef("");
   //const [text,setText] = useState("");
 
   const getData = () => {
-    searchedText.current.style.backgroundColor = "#8DDFA8";
+    searchedText.current.style.backgroundColor = "#e0d4fd";
+    searchedText.current.style.borderColor = "#240370";
     let userInput = searchedText.current.value;
     
     let matchingObjects = data.filter((obj) => {

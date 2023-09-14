@@ -5,11 +5,16 @@ import classes from "./Table.module.css";
 import SearchBar from "./Searchbar";
 import Pagination from "./Pagination";
 
+const paginationStore = {
+  itemsPerPage : 8,
+  pages:10,
+}
+
 export default function Table() {
   const data = useSelector((state) => state.apiDataReducer.filteredData);
   // const data = useSelector((state) => state.apiDataReducer.data);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
+  const itemsPerPage = paginationStore.itemsPerPage;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   //const currentItems = data.slice(startIndex, endIndex);
@@ -33,6 +38,7 @@ export default function Table() {
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
           itemsPerPage = {itemsPerPage}
+          pages = {paginationStore.pages}
         />
       </div>
     </div>

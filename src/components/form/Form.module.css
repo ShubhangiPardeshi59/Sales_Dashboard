@@ -1,33 +1,55 @@
 /* For desktop: */
-.col1 {width: 8.33%;}
-.col2 {width: 16.66%;}
-.col3 {width: 25%;}
-.col4 {width: 33.33%;}
-.col5 {width: 41.66%;}
-.col6 {width: 50%;}
-.col7 {width: 58.33%;}
-.col8 {width: 66.66%;}
-.col9 {width: 75%;}
-.col10 {width: 83.33%;}
-.col11 {width: 91.66%;}
-.col12 {width: 100%;}
-
+.col1 {
+  width: 8.33%;
+}
+.col2 {
+  width: 16.66%;
+}
+.col3 {
+  width: 25%;
+}
+.col4 {
+  width: 33.33%;
+}
+.col5 {
+  width: 41.66%;
+}
+.col6 {
+  width: 50%;
+}
+.col7 {
+  width: 58.33%;
+}
+.col8 {
+  width: 66.66%;
+}
+.col9 {
+  width: 75%;
+}
+.col10 {
+  width: 83.33%;
+}
+.col11 {
+  width: 91.66%;
+}
+.col12 {
+  width: 100%;
+}
 
 .inventoryPage {
   background-color: #f2f2f2;
-  height: 86%;
+  height: 87%;
   padding: 2rem;
   font-size: 1.2rem;
 }
 
-.row{
+.row {
   display: flex;
-  width:100%;
-  gap:0.5rem;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .formControl {
-  /* margin-bottom: 1rem; */
   height: 6rem;
 }
 
@@ -35,12 +57,6 @@
 .formControl label {
   display: block;
 }
-
-/* .formControl label {
-  margin-bottom: 0.5rem;
-} */
-
-
 
 .formControl input,
 .formControl select {
@@ -51,8 +67,6 @@
   width: 20rem;
   max-width: 100%;
 }
-
-
 
 .formControl input:focus {
   outline: none;
@@ -71,7 +85,6 @@
   flex: 1;
 }
 
-
 .inventoryPage button {
   font: inherit;
   background-color: blue;
@@ -82,13 +95,11 @@
   cursor: pointer;
 }
 
-
 .inventoryPage button:hover,
 .inventoryPage button:active {
   background-color: #33059e;
   border-color: #33059e;
 }
-
 
 .inventoryPage button:disabled,
 .inventoryPage button:disabled:hover,
@@ -107,12 +118,14 @@
   margin-left: 1rem;
 }
 
-.invalid input {
+.invalid input,
+.invalid select {
   border: 1px solid #b40e0e;
   background-color: #fddddd;
 }
 
-.invalid input:focus {
+.invalid input:focus,
+.invalid select:focus {
   border-color: #ff8800;
   background-color: #fbe8d2;
 }
@@ -120,9 +133,5 @@
 .errorText {
   color: #b40e0e;
   font-size: small;
-  margin:0;
+  margin: 0;
 }
-
-
-
-

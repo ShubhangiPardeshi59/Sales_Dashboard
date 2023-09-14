@@ -4,38 +4,36 @@ import classes from "./Table.module.css";
 export default function Pagination(props) {
   const [startPage, setStartPage] = useState(1);
  
-  const { currentPage, setCurrentPage, dataLength, itemsPerPage } = props;
-
-  const totalPages = Math.ceil(dataLength / itemsPerPage);
+  const { currentPage, setCurrentPage, dataLength,totalPages,pages } = props;
 
   useEffect(() => {
     setStartPage(
-      Math.floor((currentPage - 1) / itemsPerPage) * itemsPerPage + 1
+      Math.floor((currentPage - 1) / pages) * pages + 1
     );
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, pages]);
 
   const handlePageChange = (e) => {
-    //setState({[e.target.dataset.name]: e.target.dataset.value})
-    setCurrentPage(e.target.dataset.value);
+    setCurrentPage(Number(e.target.dataset.value));
   };
 
 
   const RenderPageNumbers = () => {
     const pageNumbers = [];
-    for (let i = 0; i < Math.min(itemsPerPage, totalPages); i++) {
-      const pageNumber = startPage + 1;
+    for (let i = 0; i < Math.min(pages, totalPages); i++) {
+      const pageNumber = startPage + i;
       if (pageNumber <= totalPages) {
         pageNumbers.push(
           <a
             key={pageNumber}
             href="#"
             data-value={pageNumber}
-            className={Number(currentPage) === pageNumber ? classes.active : ""}
+            className={currentPage === pageNumber ? classes.active : ""}
             onClick={handlePageChange}
           >
             {pageNumber}
           </a>
         );
+        
       }
     }
     return pageNumbers;
@@ -47,7 +45,6 @@ export default function Pagination(props) {
       className={classes.prev}
       data-value={currentPage - 1}
       onClick={handlePageChange}
-      disabled={currentPage === 1}
     >
       Prev
     </a>
@@ -59,7 +56,6 @@ export default function Pagination(props) {
       data-name="next"
       data-value={currentPage + 1}
       onClick={handlePageChange}
-      disabled={currentPage === totalPages}
     >
       Next
     </a>

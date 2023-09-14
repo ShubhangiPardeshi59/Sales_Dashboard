@@ -1,13 +1,12 @@
 .landingPageContainer {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 15.1rem 15.1rem 15.1rem 15.1rem;
-  grid-template-rows: 5rem 11.4rem 11.4rem;
+  grid-template-columns: 16.7rem 16.7rem 16.7rem 16.7rem;
+  grid-template-rows: 5rem 13.5rem 13.5rem;
   background-color: #f2f2f2;
-  height: 86%;
+  height: 87%;
   padding: 1rem;
   font-size: 1.2rem;
-  
 }
 
 .box {
@@ -17,7 +16,8 @@
   box-shadow: 3px 3px 3px 3px rgb(214, 210, 210);
 }
 
-.box6,.box7 {
+.box6,
+.box7 {
   grid-column: span 2;
   grid-row: span 1;
 }
@@ -27,7 +27,9 @@
   grid-row: span 2;
 }
 
-.box1,.box2,.box3 {
+.box1,
+.box2,
+.box3 {
   padding: 0.5rem;
   display: flex;
   justify-content: center;
@@ -60,17 +62,15 @@
 }
 
 .dropdown select {
-  /* width: 11rem;
-  height: 2rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem; */
-  
-  padding: 0.4rem;
+  font-size: 1rem;
+  padding: 0.3rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 10rem;
+  cursor: pointer;
+  background-color: #f2f2f2;
 }
+
 .dropdownTitle {
   width: 3rem;
 }

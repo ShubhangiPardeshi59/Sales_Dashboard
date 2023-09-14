@@ -24,46 +24,40 @@ export function TotalSales() {
     (state) => state.apiDataReducer.filterDataLandingPage
   );
 
-  //used this so that whenever data changes this should get called
-  const calTotalRevenue = () => {
-    let sum = 0;
-    data.forEach((obj) => {
-      sum += obj["revenue"];
-    });
-    sum = (sum / 1000000).toFixed(2);
-    return sum;
-  };
+  let sum = 0;
+  data.forEach((obj) => {
+    sum += obj["revenue"];
+  });
+  sum = (sum / 1000000).toFixed(2);
 
-    return (
-      <Card
-        title="Total Revenue"
-        value={data.length != 0 ? `$${calTotalRevenue()}M` : ""}
-        image={salesImg}
-      />
-    );
-  
-  
+  return (
+    <Card
+      title="Total Revenue"
+      value={data.length != 0 ? `$${sum}M` : ""}
+      image={salesImg}
+    />
+  );
 }
 
 export function Profit() {
   const data = useSelector(
     (state) => state.apiDataReducer.filterDataLandingPage
   );
-  //used this so that whenever data changes this should get called
-  const calProfit = () => {
-    let sumCost = 0;
-    let sumRevenue = 0;
-    data.forEach((obj) => {
-      sumRevenue += obj["revenue"];
-      sumCost += obj["cost"];
-    });
-    let profit = sumRevenue - sumCost;
+  let sumCost = 0;
+  let sumRevenue = 0;
+  data.forEach((obj) => {
+    sumRevenue += obj["revenue"];
+    sumCost += obj["cost"];
+  });
+  let profit = sumRevenue - sumCost;
 
-    let percentageProfit = ((profit / sumCost) * 100).toFixed(2);
-    return percentageProfit;
-  };
+  let percentageProfit = ((profit / sumCost) * 100).toFixed(2);
 
-    return <Card title="Profit" value={data.length != 0 ? `${calProfit()}%` : ""} image={profitImg} />;
-  
-
+  return (
+    <Card
+      title="Profit"
+      value={data.length != 0 ? `${percentageProfit}%` : ""}
+      image={profitImg}
+    />
+  );
 }

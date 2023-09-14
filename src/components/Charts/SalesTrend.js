@@ -19,7 +19,6 @@ export default function SalesTrend() {
   useEffect(() => {
     let root = am5.Root.new("salesTrend");
     // Set themes
-    // https://www.amcharts.com/docs/v5/concepts/themes/
     root.setThemes([
       am5themes_Animated.new(root)
     ]);

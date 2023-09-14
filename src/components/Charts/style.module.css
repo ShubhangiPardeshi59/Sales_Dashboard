@@ -1,44 +1,44 @@
-.categorySales{
-    font-size: 1rem;
-   overflow: auto;
-   height: 150px; 
-   width: 100%;
+.categorySales {
+  font-size: 1rem;
+  overflow: auto;
+  height: 150px;
+  width: 100%;
 }
-.chartTitle{
-    font-size: 1rem;
-    background-color: rgb(210, 248, 210);
-    padding:0.2rem;
-    text-align: center;
+.chartTitle {
+  font-size: 1rem;
+  background-color: rgb(210, 248, 210);
+  padding: 0.2rem;
+  text-align: center;
 }
-.salesTrend{
-    font-size: 1rem;
-    height: 370px;
-    width: 90% ;
+.salesTrend {
+  font-size: 1rem;
+  height: 370px;
+  width: 90%;
 }
-.countrySales{
-    font-size: 1rem;
-    height: 150px;
-    width: 100%;
+.countrySales {
+  font-size: 1rem;
+  height: 150px;
+  width: 100%;
 }
-.mapChart{
-    height: 450px;
-    width: 100% ;
-    background-color: white;
+.mapChart {
+  height: 450px;
+  width: 100%;
+  background-color: white;
 }
 .chartdiv {
-    height: 350px;
-    width: 90% ;
+  height: 350px;
+  width: 90%;
 }
 
 .message {
-    display: flex;
-    height: 10rem;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  height: 10rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.directedTree{
-    height: 450px;
-    width: 100% ;
-    background-color: white;
+.directedTree {
+  height: 450px;
+  width: 100%;
+  background-color: white;
 }
