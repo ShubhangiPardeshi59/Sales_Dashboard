@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import classes from "./Table.module.css";
 const data_columns = [
-  "Index",
+  "Id",
   "Date",
   "Country",
   "State",
@@ -12,6 +12,7 @@ const data_columns = [
   "quantity",
   "Cost",
   "Revenue",
+  "Edit"
 ];
 export default function TableContent(props) {
   // const dispatch = useDispatch();
@@ -60,7 +61,7 @@ export default function TableContent(props) {
   //   const copyData = getSortedData(sorted);
   //   dispatch({type:'sort_data',value:copyData})
   // }
-  const renderArrow = () => {
+  const RenderArrow = () => {
     if (sorted.reversed) {
       return <FaArrowUp />;
     }
@@ -73,7 +74,7 @@ export default function TableContent(props) {
       return (
         <th key={index} onClick={sortByRevenue}>
           <span>{val}</span>
-          {sorted.sorted === "revenue" ? renderArrow() : null}
+          {sorted.sorted === "revenue" ? <RenderArrow /> : null}
         </th>
       );
     });
@@ -87,7 +88,7 @@ export default function TableContent(props) {
       .map((obj, index) => {
         return (
           <tr key={index}>
-            <td>{obj["index"] + 1}</td>
+            <td>{obj["id"] + 1}</td>
             <td>{obj["date"]}</td>
             <td>{obj["country"]}</td>
             <td>{obj["state"]}</td>
@@ -96,6 +97,7 @@ export default function TableContent(props) {
             <td>{obj["quantity"]}</td>
             <td>{obj["cost"]}</td>
             <td>{obj["revenue"]}</td>
+            <td><i className={`fa fa-edit`}></i></td>
           </tr>
         );
       });
@@ -104,7 +106,14 @@ export default function TableContent(props) {
   };
   return (
     <table>
+      <colgroup>
+            <col  className={classes.colWidth1}></col>
+            <col span="4" className={classes.colWidth2}></col>
+            <col  className={classes.colWidth3}></col>
+            <col span="4" className={classes.colWidth4}></col>
+        </colgroup>
       <thead>
+        
         <tr>
           <GetColumns />
         </tr>
