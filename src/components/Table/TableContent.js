@@ -1,7 +1,9 @@
+import ReactDOM from "react-dom";
 import {  useSelector } from "react-redux";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import classes from "./Table.module.css";
+import EditModal from "../form/modal/editModal/EditModal";
 const data_columns = [
   "Id",
   "Date",
@@ -15,36 +17,17 @@ const data_columns = [
   "Edit"
 ];
 export default function TableContent(props) {
-  // const dispatch = useDispatch();
+ 
   const data = useSelector((state) => state.apiDataReducer.filteredData);
-  // const sorting = useSelector((state)=>state.apiSorting);
+  const [showEditModal,setshowEditModal] = useState(false);
+  const [currentRowIndex,setCurrentRowIndex] = useState(null);
+ 
   const [sorted, setSorted] = useState({
     sorted: "revenue",
     reversed: false,
     isSorted: false,
   });
-  //const [sortedDate,setSortedDate] = useState({sorted:"date",reversed:false});
-  //const [sortedCountry,setSortedCountry] = useState({sorted:"country",reversed:false});
-
-  //const [order,setOrder] = useState(null);
-  //const data = useSelector((state) => state.apiDataReducer.data);
-  // const getSortedData = (sorted) =>{
-  //   const temp = data;
-  //   temp.sort((a, b) => {
-  //     const valueA = a[sorted.sorted];
-  //     const valueB = b[sorted.sorted];
-
-  //     if (typeof valueA === 'number' && typeof valueB === 'number') {
-  //         return sorted.reversed === true ? valueA - valueB : valueB - valueA;
-  //     }
-  //     else{
-  //         const stringA = String(valueA).toLowerCase();
-  //         const stringB = String(valueB).toLowerCase();
-  //         return sorted.reversed === true ? stringA.localeCompare(stringB) : stringB.localeCompare(stringA);
-  //     }
-  // });
-  // return temp;
-  //  }
+ 
   const sortByRevenue = () => {
     setSorted({ sorted: "revenue", reversed: !sorted.false });
     const copyData = data;
@@ -56,11 +39,7 @@ export default function TableContent(props) {
     });
     return copyData;
   };
-  // const sortByRevenue = () =>{
-  //   setSorted({sorted:"revenue",reversed:!sorted.false});
-  //   const copyData = getSortedData(sorted);
-  //   dispatch({type:'sort_data',value:copyData})
-  // }
+ 
   const RenderArrow = () => {
     if (sorted.reversed) {
       return <FaArrowUp />;
@@ -97,13 +76,25 @@ export default function TableContent(props) {
             <td>{obj["quantity"]}</td>
             <td>{obj["cost"]}</td>
             <td>{obj["revenue"]}</td>
-            <td><i className={`fa fa-edit`}></i></td>
+            <td data-index={index}><i className={`fa fa-edit`} data-index={index} onClick={openEditModal}></i></td>
           </tr>
         );
       });
 
     return rows;
   };
+ 
+  const openEditModal = (event) =>{
+    setshowEditModal(true);
+    setCurrentRowIndex(Number(event.target.dataset.index));
+  }
+
+  if(showEditModal == true){
+    return <EditModal 
+    currentRowIndex={currentRowIndex} 
+    setCurrentRowIndex={setCurrentRowIndex}
+    setshowEditModal={setshowEditModal}/>
+  }
   return (
     <table>
       <colgroup>

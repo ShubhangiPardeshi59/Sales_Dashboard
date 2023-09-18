@@ -4,9 +4,9 @@ import Header from "./UI/Header";
 import Sidebar from "./UI/sidebar/Sidebar";
 import Table from "./components/Table/Table.js";
 import Loading from "./components/Loading/Loading";
-import Sales from "./components/sales/Sales"
-import Inventory from "./components/inventory/Inventory"
-import Form from "./components/form/Form"
+import Sales from "./components/sales/Sales";
+import Inventory from "./components/inventory/Inventory";
+import Form from "./components/form/Form";
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -26,9 +26,11 @@ function App() {
   const fetchDataHandler = useCallback(async () => {
     setIsLoading(true);
     const response = await fetch("http://localhost:8000/sales");
-    
+
     const data = await response.json();
+    console.log(data);
     dispatch({ type: "get_data", value: data });
+
     setIsLoading(false);
   }, [dispatch]);
 
@@ -61,6 +63,7 @@ function App() {
           </div>
         )}
       </BrowserRouter>
+     
     </>
   );
 }

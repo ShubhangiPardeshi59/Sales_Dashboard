@@ -151,7 +151,6 @@ const SimpleInput = (props) => {
     event.preventDefault();
     const data = {
       id: dataLength + 1,
-      index: dataLength + 1,
       date: enteredDate,
       year: calculateYear(enteredDate),
       month: calculateMonth(enteredDate),
@@ -195,11 +194,24 @@ const SimpleInput = (props) => {
   };
 
   //to fetch data
-  const fetchDataHandler = useCallback(async () => {
+  const fetchDataHandler = async () => {
     const response = await fetch("http://localhost:8000/sales");
     const data = await response.json();
     dispatch({ type: "get_data", value: data });
-  }, [dispatch]);
+  };
+
+  const resetHandler = () =>{
+    ageReset();
+    dateReset();
+    categoryReset();
+    subCategoryReset();
+    countryReset();
+    stateReset();
+    quantityReset();
+    priceInputReset();
+    costReset();
+    genderReset();
+  }
 
   //add class dynamically
   const ageInputClasses = ageInputHasError
@@ -419,7 +431,11 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button disabled={!formIsValid}>Submit</button>
+        <button type ="submit" disabled={!formIsValid}>Submit</button>
+      </div>
+
+      <div className="form-actions">
+        <button type ="reset" onReset={resetHandler}>Reset</button>
       </div>
     </form>
   );
