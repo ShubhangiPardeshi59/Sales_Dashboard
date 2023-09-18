@@ -1,5 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import useApiData from "./components/customeHooks/useApiData"
 import Header from "./UI/Header";
 import Sidebar from "./UI/sidebar/Sidebar";
 import Table from "./components/Table/Table.js";
@@ -17,39 +16,16 @@ const headerContent = {
 };
 
 function App() {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.apiDataReducer.data);
-  const [currentPage, setCurrentPage] = useState("overview");
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchDataHandler = useCallback(async () => {
-    setIsLoading(true);
-    const response = await fetch("http://localhost:8000/sales");
-
-    const data = await response.json();
-    console.log(data);
-    dispatch({ type: "get_data", value: data });
-
-    setIsLoading(false);
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchDataHandler();
-  }, [fetchDataHandler]);
-
+  //call to custome hook uspApiData to handle loading fo data
+  const { data, isLoading, fetchDataHandler } = useApiData("http://localhost:8000/sales");
   return (
-    //<div>hello</div>
     <>
       <BrowserRouter>
         {!isLoading && data.length === 0 && <Loading>Found no data.</Loading>}
         {isLoading && <Loading>Loading...</Loading>}
         {!isLoading && data.length > 0 && (
           <div className="main">
-            <Sidebar
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
+            <Sidebar />
             <div className="rightSide">
               <Header headerContent={headerContent} />
               <Routes>

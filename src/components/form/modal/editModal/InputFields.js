@@ -180,6 +180,7 @@ export default function InputFields(props){
   };
 
   const resetHandler = () =>{
+    console.log("inside reset handler ")
     dateReset();
     categoryReset();
     subCategoryReset();
@@ -371,7 +372,7 @@ export default function InputFields(props){
         <button type="submit" disabled={!formIsValid}>Submit</button>
       </div>
       <div className="form-actions">
-        <button type="reset" onReset={resetHandler}>Reset</button>
+        <button type="reset" onClick={resetHandler}>Reset</button>
       </div>
     </form>
   );

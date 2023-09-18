@@ -1,21 +1,14 @@
 import { useReducer } from "react";
 
-// //initial values
-// const initialInputState = {
-//   value: "",
-//   isTouched: false,
-// };
-
-//reducer funtion (its telling what are actions)
 const inputStateReducer = (state , action) => {
   if (action.type === "INPUT") {
-    return { value: action.value, isTouched: state.isTouched };
+    return {  isTouched: state.isTouched,value: action.value };
   }
   if (action.type === "BLUR") {
     return { isTouched: true, value: state.value };
   }
   if (action.type === "RESET") {
-    return { isTouched: false, value: "" };
+    return { isTouched: false, value:action.value};
   }
   return state;
 };
@@ -41,9 +34,11 @@ const useInput = (validateValue,initialInputState) => {
   };
 
   const reset = () => {
-    dispatch({ type: "RESET" });
+    dispatch({ type: "RESET", value: initialInputState.value });
   };
-
+  //console.log("initial input state" ,initialInputState.value)
+ console.log("initial input state" ,initialInputState.value);
+ console.log(" input state value" ,inputState.value);
   return {
     value: inputState.value,
     isValid: valueIsValid,
