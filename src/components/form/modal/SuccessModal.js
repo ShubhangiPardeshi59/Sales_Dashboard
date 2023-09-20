@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import image from "../../../assets/rightTick.png";
 import classes from "./SuccessModal.module.css";
 export default function SuccessModal(props) {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { TotalTransactions, TotalSales, Profit } from "../Cards/CardKpi";
+import { TotalTransactions, TotalSales, Profit } from "../cards/CardKpi";
 import classes from "./LandingPage.module.css";
-import PieChart from "../Charts/Piechart";
-import SalesTrend from "../Charts/SalesTrend2";
-import FunnelChart from "../Charts/FunnelChart";
+import PieChart from "../charts/Piechart";
+import SalesTrend from "../charts/SalesTrend2";
+import FunnelChart from "../charts/FunnelChart";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function LandingPage() {
@@ -25,20 +25,20 @@ export default function LandingPage() {
 
   //to filter the data when month or year is selected
   useEffect(() => {
-    if (selectedMonth == "all" && selectedYear == "all") {
+    if (selectedMonth === "all" && selectedYear === "all") {
       dispatch({ type: "filter_data_landing_page", value: data });
     } else {
       const filteredData = data.filter((item) => {
         return (
-          (selectedYear == "all" && item["month"] == selectedMonth) ||
-          (item["year"] == parseInt(selectedYear) && selectedMonth == "all") ||
-          (item["year"] == parseInt(selectedYear) &&
-            item["month"] == selectedMonth)
+          (selectedYear === "all" && item["month"] === selectedMonth) ||
+          (item["year"] === parseInt(selectedYear) && selectedMonth === "all") ||
+          (item["year"] === parseInt(selectedYear) &&
+            item["month"] === selectedMonth)
         );
       });
       dispatch({ type: "filter_data_landing_page", value: filteredData });
     }
-  }, [selectedMonth, selectedYear]);
+  }, [selectedMonth, selectedYear,data,dispatch]);
 
   return (
     <div className={classes.landingPageContainer}>

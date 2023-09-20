@@ -1,14 +1,16 @@
 import useApiData from "./components/customeHooks/useApiData"
-import Header from "./UI/Header";
-import Sidebar from "./UI/sidebar/Sidebar";
-import Table from "./components/Table/Table.js";
-import Loading from "./components/Loading/Loading";
+import Header from "./components/ui/Header";
+import Sidebar from "./components/ui/Sidebar";
+import Table from "./components/table/Table.js";
+import Loading from "./components/loading/Loading";
 import Sales from "./components/sales/Sales";
 import Inventory from "./components/inventory/Inventory";
 import Form from "./components/form/Form";
 import "./App.css";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/landingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EditModal from "./components/form/modal/EditModal";
+
 
 const headerContent = {
   name: "Sales Analysis",
@@ -30,10 +32,11 @@ function App() {
               <Header headerContent={headerContent} />
               <Routes>
                 <Route path="/" element={<LandingPage />}></Route>
-                <Route path="/sales" element={<Sales />}></Route>
-                <Route path="/inventory" element={<Inventory />}></Route>
-                <Route path="/table" element={<Table />}></Route>
-                <Route path="/form" element={<Form fetchDataHandler={fetchDataHandler}/>}></Route>
+                <Route path="sales" element={<Sales />}></Route>
+                <Route path="inventory" element={<Inventory />}></Route>
+                <Route path="table" element={<Table />}></Route>
+                <Route path="table/:id" element={<EditModal /> }></Route>
+                <Route path="form" element={<Form fetchDataHandler={fetchDataHandler}/>}></Route>
               </Routes>
             </div>
           </div>

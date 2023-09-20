@@ -16,7 +16,7 @@ export const useEffectPieChart = (
   rootId
 ) => {
   useEffect(() => {
-    if (somedata.length != 0) {
+    if (somedata.length !== 0) {
       // Create root and chart
       let root = am5.Root.new(rootId);
       let chart = root.container.children.push(
@@ -37,7 +37,7 @@ export const useEffectPieChart = (
 
       return () => root.dispose();
     }
-  }, [somedata]);
+  }, [somedata,categoryField,rootId,valueField]);
 };
 
 export const useEffectFunnelChart = (
@@ -47,7 +47,7 @@ export const useEffectFunnelChart = (
   rootId
 ) => {
   useEffect(() => {
-    if (somedata.length != 0) {
+    if (somedata.length !== 0) {
       // Create root element
       let root = am5.Root.new(rootId);
 
@@ -81,7 +81,7 @@ export const useEffectFunnelChart = (
     
       return () => root.dispose();
     }
-  }, [somedata]);
+  }, [somedata,categoryField,rootId,valueField]);
 };
 
 export const useEffectLineChart = (
@@ -91,7 +91,7 @@ export const useEffectLineChart = (
   rootId
 ) => {
   useEffect(() => {
-    if (somedata.length != 0) {
+    if (somedata.length !== 0) {
       // Create root element
       let root = am5.Root.new(rootId);
       // Set theme
@@ -179,5 +179,5 @@ export const useEffectLineChart = (
 
       return () => root.dispose();
     }
-  }, [somedata]);
+  }, [somedata,categoryField,rootId,valueField]);
 };

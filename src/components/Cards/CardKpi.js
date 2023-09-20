@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useEffect, useMemo } from "react";
 import transactionImg from "../../assets/transaction.png";
 import salesImg from "../../assets/salesImg.png";
 import profitImg from "../../assets/profit.png";
@@ -13,7 +12,7 @@ export function TotalTransactions() {
   return (
     <Card
       title="Transactions"
-      value={data.length != 0 ? TotalTransactions : ""}
+      value={data.length !== 0 ? TotalTransactions : ""}
       image={transactionImg}
     />
   );
@@ -33,7 +32,7 @@ export function TotalSales() {
   return (
     <Card
       title="Total Revenue"
-      value={data.length != 0 ? `$${sum}M` : ""}
+      value={data.length !== 0 ? `$${sum}M` : ""}
       image={salesImg}
     />
   );
@@ -56,7 +55,7 @@ export function Profit() {
   return (
     <Card
       title="Profit"
-      value={data.length != 0 ? `${percentageProfit}%` : ""}
+      value={data.length !== 0 ? `${percentageProfit}%` : ""}
       image={profitImg}
     />
   );
