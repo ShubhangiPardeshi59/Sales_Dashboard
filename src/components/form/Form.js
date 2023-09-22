@@ -20,7 +20,7 @@ export default function Form(props) {
   }, [isSubmitted]);
 
   return (
-    <div className={classes.inventoryPage}>
+    <div className={classes.formPage}>
       <div className={classes.formContainer}>
         <SimpleInput
           fetchDataHandler={props.fetchDataHandler}

@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import classes from "./Table.module.css";
-import EditModal from "../form/modal/EditModal";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 const data_columns = [
   "Id",
   "Date",
@@ -19,23 +18,49 @@ const data_columns = [
 ];
 export default function TableContent(props) {
   const data = useSelector((state) => state.apiDataReducer.filteredData);
-  //const [showEditModal, setshowEditModal] = useState(false);
-  const [currentRowIndex, setCurrentRowIndex] = useState(null);
 
   const [sorted, setSorted] = useState({
-    sorted: "revenue",
+    sorted: "",
     reversed: false,
     isSorted: false,
   });
 
-  const sortByRevenue = () => {
-    setSorted({ sorted: "revenue", reversed: !sorted.false });
-    const copyData = data;
-    copyData.sort((userA, userB) => {
-      if (sorted.reversed) {
-        return userA.revenue - userB.revenue;
+  const sort = (event) => {
+    const column = event.target.dataset.col;
+   console.log("target clicked is ",event.target.dataset.col);
+    if(sorted.isSorted === false){
+      setSorted({...sorted, sorted: {column}, isSorted: true});
+    }
+    else{
+      if(sorted.reversed === false){
+        setSorted({...sorted, sorted: {column}, reversed: true});
       }
-      return userB.revenue - userA.revenue;
+      else{
+        setSorted({sorted: "", reversed: false, isSorted: false});
+      }
+    }
+
+   
+    const copyData = data;
+    copyData.sort((a, b) => {
+      const valA = a[column];
+      const valB = b[column];
+
+      if(typeof(valA) === "number" && typeof(valB) === "number"){
+        if (sorted.reversed) {
+          return valA.revenue - valB.revenue;
+        }
+        return valB.revenue - valA.revenue;
+      }
+      else{
+        const stringA = String(valA).toLowerCase();
+        const stringB = String(valB).toLowerCase();
+        if (sorted.reversed) {
+          stringA.localeCompare(stringB)
+        }
+        stringB.localeCompare(stringA);
+      }
+      
     });
     return copyData;
   };
@@ -50,9 +75,9 @@ export default function TableContent(props) {
   const GetColumns = () => {
     const tempCol = data_columns.map(function (val, index) {
       return (
-        <th key={index} onClick={sortByRevenue}>
+        <th key={index} onClick={sort} data-col = {val}>
           <span>{val}</span>
-          {sorted.sorted === "revenue" ? <RenderArrow /> : null}
+          {sorted.sorted === val ? <RenderArrow /> : null}
         </th>
       );
     });
@@ -88,12 +113,6 @@ export default function TableContent(props) {
     return rows;
   };
 
-  // const openEditModal = (event) => {
-  //  // setshowEditModal(true);
-  //   setCurrentRowIndex(Number(event.target.dataset.index));
-  // };
-
-  
   return (
     <table>
       <colgroup>

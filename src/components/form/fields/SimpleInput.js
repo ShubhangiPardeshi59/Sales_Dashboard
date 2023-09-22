@@ -199,18 +199,18 @@ const SimpleInput = (props) => {
     dispatch({ type: "get_data", value: data });
   };
 
-  const resetHandler = () =>{
-    ageReset();
-    dateReset();
-    categoryReset();
-    subCategoryReset();
-    countryReset();
-    stateReset();
-    quantityReset();
-    priceInputReset();
-    costReset();
-    genderReset();
-  }
+  // const resetHandler = () =>{
+  //   ageReset();
+  //   dateReset();
+  //   categoryReset();
+  //   subCategoryReset();
+  //   countryReset();
+  //   stateReset();
+  //   quantityReset();
+  //   priceInputReset();
+  //   costReset();
+  //   genderReset();
+  // }
 
   //add class dynamically
   const ageInputClasses = ageInputHasError
@@ -429,13 +429,12 @@ const SimpleInput = (props) => {
           <p className={classes.errorText}>Gender must not be empty</p>
         )}
       </div>
-      <div className="form-actions">
+      <div className={classes.formActions}>
         <button type ="submit" disabled={!formIsValid}>Submit</button>
+        {/* <button type ="reset" onReset={resetHandler}>Reset</button> */}
       </div>
 
-      <div className="form-actions">
-        <button type ="reset" onReset={resetHandler}>Reset</button>
-      </div>
+     
     </form>
   );
 };

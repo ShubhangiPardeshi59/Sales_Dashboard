@@ -36,7 +36,7 @@
   width: 100%;
 }
 
-.inventoryPage {
+.formPage {
   background-color: #f2f2f2;
   height: 87%;
   padding: 2rem;
@@ -85,7 +85,7 @@
   flex: 1;
 }
 
-.inventoryPage button {
+.formPage button {
   font: inherit;
   background-color: blue;
   color: white;
@@ -95,15 +95,15 @@
   cursor: pointer;
 }
 
-.inventoryPage button:hover,
-.inventoryPage button:active {
+.formPage button:hover,
+.formPage button:active {
   background-color: #33059e;
   border-color: #33059e;
 }
 
-.inventoryPage button:disabled,
-.inventoryPage button:disabled:hover,
-.inventoryPage button:disabled:active {
+.formPage button:disabled,
+.formPage button:disabled:hover,
+.formPage button:disabled:active {
   background-color: #ccc;
   color: #292929;
   border-color: #ccc;
@@ -111,10 +111,10 @@
 }
 
 .formActions {
-  text-align: right;
+  text-align: left;
 }
 
-.formActions button {
+.formActions button[type="reset"] {
   margin-left: 1rem;
 }
 
